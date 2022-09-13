@@ -6,6 +6,9 @@ const app = express()
 
 console.log(PORT)
 
+// MIDDLEWARE
+app.use(express.static('public'))
+
 app.get('/', (req,res) => {
     res.send('Welcome to an Awesome App about Breads!')
 })
@@ -16,6 +19,12 @@ app.engine('jsx', require('express-react-views').createEngine())
 
 const breadsController = require('./controllers/breads_controller.js')
 app.use('/breads', breadsController)
+
+// 404 Page
+app.get('*', (req, res) => {
+    res.status(404).send('404')
+  })
+  
 
 app.listen(PORT, () => {
     console.log('listening on port',PORT)
