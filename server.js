@@ -8,6 +8,7 @@ console.log(PORT)
 
 // MIDDLEWARE
 app.use(express.static('public'))
+app.use(express.urlencoded({extended:true}))
 
 app.get('/', (req,res) => {
     res.send('Welcome to an Awesome App about Breads!')
